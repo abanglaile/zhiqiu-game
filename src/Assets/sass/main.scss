@@ -1,0 +1,132 @@
+// parameter
+$color-blue: RGBA(49, 152, 255, 1.00);
+$color-cyan: RGBA(0, 203, 194, 1.00);
+$color-green: RGBA(53, 193, 68, 1.00);
+$color-dark: RGBA(83, 92, 100, 1.00);
+$color-brown: RGBA(149, 85, 0, 1.00);
+$color-gray: RGBA(239, 240, 244, 1.00);
+$color-border: RGBA(175, 175, 175, 0.9);
+$color-background: RGBA(245, 245, 249, 1.00);
+$tabbar-height: 60px;
+
+// inherit
+%common {
+  box-sizing: border-box;
+  // font-size: 12px;
+  // line-height: 12px;
+  transition: all .1s ease;
+}
+%center-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+%center-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+// animation
+
+// bone
+html {
+  height: 100%;
+}
+body {
+  @extend %common;
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+#app {
+  @extend %common;
+  font-family: 'Microsoft YaHei', 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  background-color: $color-background;
+  .bone {
+    @extend %common;
+    height: 100%;
+  }
+  .module {
+    @extend %common;
+    position: relative;
+    width: 100%;
+    height: calc(100% - #{$tabbar-height});
+    padding: 10px;
+    overflow: hidden auto;
+  }
+  .am-tab-bar {
+    @extend %common;
+    position: fixed;
+    bottom: 0;
+    height: $tabbar-height;
+    width: 100%;
+    overflow: hidden;
+    // border-top: solid 1px RGBA(208, 208, 208, 1.00);
+    border-top: solid 1px $color-border;
+    .am-tabs,.am-tabs-tab-bar-wrap, {
+      height: 100%;
+    }
+    .am-tabs-content-wrap {
+      display: none;
+    }
+    .am-tab-bar-bar {
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+      .am-tab-bar-tab {
+        @extend %center-column;
+        width: 25%;
+        .am-tab-bar-tab-icon {
+          line-height: 1;
+          .iconfont {
+            font-size: 25px;
+          }
+        }
+        .am-tab-bar-tab-title {
+          margin: 0;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+// component
+.account {
+  .background {
+    @extend %center-column;
+    background-image: url('../pic/bg_trans2.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 120px;
+    color: white;
+    .logo {
+      @extend %center-row;
+      border: solid 3px white;
+      border-radius: 100px;
+      width: 50px;
+      height: 50px;
+      i.iconfont {
+        font-size: 45px;
+      }
+    }
+    .title {
+      margin-top: 5px;
+      font-size: 18px;
+    }
+  }
+}
+
+// antd reconstructor
+.am-list-thumb {
+  i.iconfont {
+    font-size: 28px;
+  }
+}

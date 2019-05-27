@@ -33,7 +33,7 @@ class Tabbar extends React.Component {
             this.setState({
               selectedTab: 'Course'
             })
-            browserHistory.push('/')
+            browserHistory.push('/zhiqiu-game/')
           }}
           data-seed="logId"
         >
@@ -49,7 +49,7 @@ class Tabbar extends React.Component {
             this.setState({
               selectedTab: 'Learning'
             })
-            browserHistory.push('/room')
+            browserHistory.push('/zhiqiu-game/room')
           }}
           data-seed="logId"
         >
@@ -80,7 +80,7 @@ class Tabbar extends React.Component {
             this.setState({
               selectedTab: 'Account'
             })
-            browserHistory.push('/account')
+            browserHistory.push('/zhiqiu-game/account')
           }}
           data-seed="logId"
         >

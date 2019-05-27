@@ -36,7 +36,8 @@ const generateConfig = env => ({
     filename: '[name]-[hash:5].js',
     chunkFilename: '[id].chunk.js',
     path: path.join(__dirname, '..', 'dist'),
-    publicPath: env === 'development' ? '/' : path.join(__dirname, '..', 'dist/')
+    // publicPath: env === 'development' ? '/' : path.join(__dirname, '..', 'dist/')
+    publicPath: env === 'development' ? '/' : '/zhiqiu-game/'
   },
   resolve: {
     alias: {

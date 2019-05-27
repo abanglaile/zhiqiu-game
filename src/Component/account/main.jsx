@@ -1,10 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Card, List, WhiteSpace } from 'antd-mobile'
+import { Button, Card, List, Badge, Tabs, WhiteSpace } from 'antd-mobile'
 import { demoAction } from '@/Action/index'
 
 const Item = List.Item
 const Brief = Item.Brief
+
+const tabs = [
+  { title: <Badge text={ '3' }>装备</Badge> },
+  { title: <Badge dot>道具</Badge> }
+]
 
 class Template extends React.Component {
   constructor (props) {
@@ -27,7 +32,7 @@ class Template extends React.Component {
             <div className="logo">
               <i className="iconfont icon-user"></i>
             </div>
-            <div className="title">Someone</div>
+            <div className="title">{this.props.nickname}</div>
           </div>
         </Card>
         <WhiteSpace></WhiteSpace>
@@ -41,46 +46,58 @@ class Template extends React.Component {
             学习时长 <Brief>3254小时</Brief>
           </Item>
           <Item
-            extra="兑换积分"
+            extra="兑换玻璃球"
             arrow="horizontal"
             thumb={<i className="iconfont icon-gift"></i>}
             multipleLine
             onClick={() => {}}>
-            积分 <Brief>238</Brief>
+            玻璃球 <Brief>238</Brief>
           </Item>
         </List>
         <WhiteSpace></WhiteSpace>
-        <List renderHeader={() => '账号设置'}>
-          <Item
-            extra="修改密码"
-            arrow="horizontal"
-            multipleLine
-            onClick={() => {}}>
-            用户名 <Brief>Someone</Brief>
-          </Item>
-          <Item
-            extra="绑定邮箱"
-            arrow="horizontal"
-            multipleLine
-            onClick={() => {}}>
-            邮箱 <Brief>someone@somewhere.com</Brief>
-          </Item>
-          <Item
-            extra="绑定手机"
-            arrow="horizontal"
-            multipleLine
-            onClick={() => {}}>
-            手机 <Brief>13813813800</Brief>
-          </Item>
-        </List>
+        <Tabs tabs={tabs}
+          initialPage={1}
+          onChange={(tab, index) => { console.log('onChange', index, tab) }}
+          onTabClick={(tab, index) => { console.log('onTabClick', index, tab) }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
+            Content of first tab
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
+            Content of second tab
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
+            Content of third tab
+          </div>
+        </Tabs>
+        <WhiteSpace />
+        <Button type="warning">退出登录</Button>
+        <WhiteSpace />
       </div>
     )
   }
 }
+// <List renderHeader={() => '背包'}>
+//   <Item
+//     extra="装备"
+//     arrow="horizontal"
+//     multipleLine
+//     onClick={() => {}}>
+//     装备 <Brief>Equipments</Brief>
+//   </Item>
+//   <Item
+//     extra="使用"
+//     arrow="horizontal"
+//     multipleLine
+//     onClick={() => {}}>
+//     道具 <Brief>Items</Brief>
+//   </Item>
+// </List>
 
 export default connect(
   (state) => ({
     // prop: state.demoReducer.toJS().json.prop
+    nickname: state.AuthData.get('nickname')
   }),
   (dispatch) => ({
     onClick: () => {

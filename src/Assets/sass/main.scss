@@ -7,6 +7,9 @@ $color-brown: RGBA(149, 85, 0, 1.00);
 $color-gray: RGBA(239, 240, 244, 1.00);
 $color-border: RGBA(175, 175, 175, 0.9);
 $color-background: RGBA(245, 245, 249, 1.00);
+$color-quality-white: RGBA(0, 0, 0, 1.00);
+$color-quality-green: RGBA(9, 240, 28, 1.00);
+$color-quality-orange: RGBA(198, 88, 0, 1.00);
 $tabbar-height: 60px;
 
 // inherit
@@ -58,7 +61,8 @@ body {
     width: 100%;
     height: calc(100% - #{$tabbar-height});
     padding: 10px;
-    overflow: hidden auto;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .am-tab-bar {
     @extend %common;
@@ -98,6 +102,81 @@ body {
 }
 
 // component
+.room {
+  .title {
+    font-size: 1.7em;
+    margin-bottom: 7px;
+  }
+  .subtitle {
+    color: gray;
+    font-size: 0.9em;
+  }
+  .white {
+    box-shadow: 0px 0px 2px $color-quality-white;
+    .title {
+      color: gray;
+    }
+    .iconfont {
+      color: gray;
+    }
+  }
+  .green {
+    box-shadow: 0px 0px 10px $color-quality-green;
+    .title {
+      color: $color-quality-green;
+    }
+    .iconfont {
+      color: $color-quality-green;
+    }
+  }
+  .orange {
+    box-shadow: 0px 0px 10px $color-quality-orange;
+    .title {
+      color: $color-quality-orange;
+    }
+    .iconfont {
+      color: $color-quality-orange;
+    }
+  }
+  .card {
+    box-sizing: border-box;
+    margin-top: 15px;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 5px;
+    // box-shadow: 0px 0px 10px RGBA(198, 88, 0, 1.00);
+    .header {
+      box-sizing: border-box;
+      height: 30px;
+      line-height: 30px;
+      border-bottom: solid 1px $color-gray;
+      .iconfont {
+        font-size: 20px;
+      }
+      .title {
+        font-size: 20px;
+        margin-left: 5px;
+      }
+      .percent {
+        float: right;
+      }
+    }
+    .content {
+      padding: 5px;
+      .description {
+        padding-left: 3px;
+      }
+    }
+    .footer {
+      height: 25px;
+      line-height: 25px;
+      font-size: 12px;
+      .iconfont {
+        font-size: 12px;
+      }
+    }
+  }
+}
 .account {
   .background {
     @extend %center-column;

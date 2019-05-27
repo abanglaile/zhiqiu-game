@@ -27,14 +27,13 @@ let redirectURI = config.redirect_uri
 // }
 
 const routes = (
-  <Route path="/zhiqiu-game" component={requireAuthentication(Bone)}>
+  <Route path="/zhiqiu-game" component={Bone}>
     <IndexRoute component={Course} />
     <Route path="room" component={Room} />
     <Route path="account" component={Account} />
   </Route>
 )
+// <Route path="/zhiqiu-game" component={requireAuthentication(Bone)}>
 // <Route path="login" component={Room} onEnter={redirectToWechat} />
-// <Route path="account" component={requireAuthentication(Account)} />
-// <Route path="account" component={Account} />
 
 export default routes

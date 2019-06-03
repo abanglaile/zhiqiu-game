@@ -11,7 +11,13 @@ import { store, history } from '@/Store/index'
 import Routes from '@/Router/index'
 import { getWxUserInfoSuccess } from '@/Action/wxsign'
 
-let token = localStorage.getItem('token')
+let token = JSON.stringify({
+  'userid': '4e1845e0644711e98a720fd6f7c4240e',
+  'nickname': '失心迦兰',
+  'imgurl': 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLPxwbTiaswo2uS0hz54JiaSaPbK4MYDLmfBQxkSDosiaQcHTmuFJSN9Bk1R40Vg3GFI9j34bGp7ic83g/132',
+  'realname': '吉'
+})
+// let token = localStorage.getItem('token')
 if (token !== null) {
   store.dispatch(getWxUserInfoSuccess(token))
 }

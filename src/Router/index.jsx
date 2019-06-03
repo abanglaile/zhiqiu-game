@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import { connect } from 'react-redux'
 
-import { requireAuthentication } from '../utils'
+import { requireAuthentication, requireEnterRoom } from '../utils'
 import { store } from '@/Store/index'
 import config from '@/utils/Config'
 
@@ -27,10 +27,10 @@ let redirectURI = config.redirect_uri
 // }
 
 const routes = (
-  <Route path="/zhiqiu-game" component={Bone}>
+  <Route path="/zhiqiu-game" component={requireAuthentication(Bone)}>
     <IndexRoute component={Course} />
     <Route path="room" component={Room} />
-    <Route path="account" component={Account} />
+    <Route path="account" component={requireEnterRoom(Account)} />
   </Route>
 )
 // <Route path="/zhiqiu-game" component={requireAuthentication(Bone)}>

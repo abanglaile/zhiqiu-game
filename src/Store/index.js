@@ -5,12 +5,14 @@ import thunk from 'redux-thunk'
 
 import * as reducerIndex from '@/Reducer/index'
 import * as reducerWXSign from '@/Reducer/wxsign'
+import * as reducerUser from '@/Reducer/user'
 
 const middleware = routerMiddleware(browserHistory)
 export const store = createStore(
   combineReducers({
     ...reducerIndex,
     ...reducerWXSign,
+    ...reducerUser,
     routing: routerReducer
   }),
   applyMiddleware(middleware, thunk)

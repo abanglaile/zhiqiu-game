@@ -1,7 +1,4 @@
 import config from './Config'
 
-import { requireAuthentication } from './wxsign'
-
-export {
-  requireAuthentication
-}
+export * from './wxsign'
+export * from './user'

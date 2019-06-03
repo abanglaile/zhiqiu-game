@@ -1,6 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { demoAction } from '@/Action/index'
+import { Button, Modal } from 'antd-mobile'
+import * as action from '@/Action/user'
+
+const alert = Modal.alert
 
 class Card extends React.Component {
   constructor (props) {
@@ -22,6 +25,24 @@ class Card extends React.Component {
 
   componentWillUnmount () {}
 
+  showAlert = () => {
+    const alertInstance = alert(`${this.state.title}`, '即将进入，开启学习远征，确认？', [
+      { text: 'Cancel', style: 'default', onPress: () => console.log('cancel') },
+      {
+        text: 'OK',
+        onPress: () => {
+          console.log('ok')
+          this.props.apiEnterRoom('test_room_id')
+        }
+      }
+    ])
+    // setTimeout(() => {
+    //   // 可以调用close方法以在外部close
+    //   console.log('auto close');
+    //   alertInstance.close();
+    // }, 500000);
+  }
+
   render () {
     return (
       <div className={`card ${this.state.quality}`}>
@@ -37,7 +58,14 @@ class Card extends React.Component {
         </div>
         <div className="footer">
           <i className="iconfont icon-user"></i>
-          {this.state.admin}
+          <span>{this.state.admin}</span>
+          <Button
+            inline
+            type="primary"
+            style={{ float: 'right', height: '100%', fontSize: '1.2em', lineHeight: '25px' }}
+            onClick={this.showAlert}>
+            Enter
+          </Button>
         </div>
       </div>
     )
@@ -45,12 +73,6 @@ class Card extends React.Component {
 }
 
 export default connect(
-  (state) => ({
-    prop: state.demoReducer.toJS().json.prop
-  }),
-  (dispatch) => ({
-    onClick: () => {
-      dispatch(demoAction({ prop: 'kiiil' }))
-    }
-  })
+  (state) => ({}),
+  action
 )(Card)

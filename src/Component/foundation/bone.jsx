@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import Navbar from '@/Component/foundation/navbar'
 import Tabbar from '@/Component/foundation/tabbar'
 
 class Bone extends React.Component {
@@ -16,7 +15,6 @@ class Bone extends React.Component {
   render () {
     return (
       <div className="bone">
-        <Navbar></Navbar>
         <div className="module">
           {this.props.children}
         </div>

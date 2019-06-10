@@ -11,8 +11,8 @@ $color-quality-white: RGBA(0, 0, 0, 1.00);
 $color-quality-green: RGBA(9, 240, 28, 1.00);
 $color-quality-orange: RGBA(198, 88, 0, 1.00);
 
-$navbar-height: 30px;
 $tabbar-height: 60px;
+$new-wrapper-size: 70px;
 
 // inherit
 %common {
@@ -57,26 +57,12 @@ body {
     @extend %common;
     height: 100%;
   }
-  .navbar {
-    @extend %common;
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    height: $navbar-height;
-    line-height: 30px;
-    width: 100%;
-    overflow: hidden;
-    padding: 0 1em;
-    background-color: $color-background;
-    border-bottom: solid 1px $color-border;
-    box-shadow: 0 1px 38px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.19);
-  }
   .module {
     @extend %common;
     position: relative;
     width: 100%;
-    margin-top: $navbar-height;
-    height: calc(100% - #{$navbar-height} - #{$tabbar-height});
+    margin-top: 0;
+    height: calc(100% - #{$tabbar-height});
     padding: 10px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -115,6 +101,27 @@ body {
         }
       }
     }
+  }
+}
+.new-wrapper {
+  position: fixed;
+  bottom: 5px;
+  width: $new-wrapper-size;
+  height: $new-wrapper-size;
+  left: 50%;
+  margin-left: -($new-wrapper-size/2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-background;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1PX solid #ddd;
+  border-radius: 100px;
+  &:active {
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3), 0 4px 20px 0 rgba(0, 0, 0, 0.29);
+  }
+  .iconfont {
+    font-size: 30px;
   }
 }
 
@@ -225,4 +232,7 @@ body {
   i.iconfont {
     font-size: 28px;
   }
+}
+.selected {
+  color: $color-blue;
 }

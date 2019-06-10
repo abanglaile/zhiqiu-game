@@ -90,7 +90,7 @@ body {
     overflow: hidden;
     // border-top: solid 1px RGBA(208, 208, 208, 1.00);
     border-top: solid 1px $color-border;
-    .am-tabs,.am-tabs-tab-bar-wrap, {
+    .am-tabs, .am-tabs-tab-bar-wrap {
       height: 100%;
     }
     .am-tabs-content-wrap {

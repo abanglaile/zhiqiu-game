@@ -66,6 +66,19 @@ body {
     padding: 10px;
     overflow-x: hidden;
     overflow-y: auto;
+    .title-wrapper {
+      @extend %common;
+      margin-bottom: 10px;
+      .iconfont {
+        font-size: 25px;
+        padding-right: 10px;
+        margin-right: 10px;
+        border-right: solid 1px;
+      }
+      .title {
+        font-size: 22px;
+      }
+    }
   }
   .am-tab-bar {
     @extend %common;
@@ -127,48 +140,12 @@ body {
 
 // component
 .room {
-  .title {
-    font-size: 1.7em;
-    margin-bottom: 7px;
-  }
-  .subtitle {
-    color: gray;
-    font-size: 0.9em;
-  }
-  .white {
-    // box-shadow: 0px 0px 2px $color-quality-white;
-    .title {
-      color: gray;
-    }
-    .iconfont {
-      color: gray;
-    }
-  }
-  .green {
-    // box-shadow: 0px 0px 10px $color-quality-green;
-    .title {
-      color: $color-quality-green;
-    }
-    .iconfont {
-      color: $color-quality-green;
-    }
-  }
-  .orange {
-    // box-shadow: 0px 0px 10px $color-quality-orange;
-    .title {
-      color: $color-quality-orange;
-    }
-    .iconfont {
-      color: $color-quality-orange;
-    }
-  }
   .card {
     box-sizing: border-box;
-    margin-top: 15px;
-    background-color: #fff;
-    border-radius: 3px;
+    margin-top: 10px;
     padding: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #fff;
+    border: solid 1px $color-border;
     .header {
       box-sizing: border-box;
       height: 30px;
@@ -192,9 +169,11 @@ body {
       }
     }
     .footer {
+      box-sizing: border-box;
       height: 25px;
       line-height: 25px;
       font-size: 12px;
+      border-top: solid 1px $color-gray;
       .iconfont {
         font-size: 12px;
       }

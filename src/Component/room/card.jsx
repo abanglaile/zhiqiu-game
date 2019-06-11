@@ -13,7 +13,6 @@ class Card extends React.Component {
       title: props.title,
       description: props.description,
       admin: props.admin,
-      quality: props.quality ? props.quality : 'white',
       number: props.number,
       max: props.max ? props.max : 50
     }
@@ -45,7 +44,7 @@ class Card extends React.Component {
 
   render () {
     return (
-      <div className={`card ${this.state.quality}`}>
+      <div className="card">
         <div className="header">
           <i className={`iconfont ${this.state.icon}`}></i>
           <span className="title">
@@ -61,7 +60,7 @@ class Card extends React.Component {
           <span>{this.state.admin}</span>
           <Button
             inline
-            type="primary"
+            size="small"
             style={{ float: 'right', height: '100%', fontSize: '1.2em', lineHeight: '25px' }}
             onClick={this.showAlert}>
             Enter

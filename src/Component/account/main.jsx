@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Button, Card, List, Badge, Tabs, WhiteSpace } from 'antd-mobile'
-import { demoAction } from '@/Action/index'
+
+import Title from '@/Component/foundation/title'
 
 const Item = List.Item
 const Brief = Item.Brief
@@ -27,6 +28,7 @@ class Template extends React.Component {
   render () {
     return (
       <div className="account">
+        <Title title="个人信息" icon="icon-user"></Title>
         <Card full>
           <div className="background">
             <div className="logo">

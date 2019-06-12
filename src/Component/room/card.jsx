@@ -50,7 +50,7 @@ class Card extends React.Component {
           <span className="title">
             {this.state.title}
           </span>
-          <span className="percent">{this.state.number} / {this.state.max}</span>
+          <span className="right">{this.state.number} / {this.state.max}</span>
         </div>
         <div className="content">
           <div className="description">{this.state.description}</div>
@@ -58,13 +58,16 @@ class Card extends React.Component {
         <div className="footer">
           <i className="iconfont icon-user"></i>
           <span>{this.state.admin}</span>
-          <Button
-            inline
-            size="small"
-            style={{ float: 'right', height: '100%', fontSize: '1.2em', lineHeight: '25px' }}
-            onClick={this.showAlert}>
-            Enter
-          </Button>
+          <div className="right">
+            <Button
+              inline
+              type="primary"
+              size="small"
+              style={{ float: 'right', height: '100%', fontSize: '1.2em', lineHeight: '25px' }}
+              onClick={this.showAlert}>
+              Enter
+            </Button>
+          </div>
         </div>
       </div>
     )

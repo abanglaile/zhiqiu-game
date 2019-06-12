@@ -122,6 +122,7 @@ body {
   width: $new-wrapper-size;
   height: $new-wrapper-size;
   left: 50%;
+  z-index: 100;
   margin-left: -($new-wrapper-size/2);
   display: flex;
   justify-content: center;
@@ -148,6 +149,8 @@ body {
     border: solid 1px $color-border;
     .header {
       box-sizing: border-box;
+      display: flex;
+      align-items: center;
       height: 30px;
       line-height: 30px;
       border-bottom: solid 1px $color-gray;
@@ -155,11 +158,11 @@ body {
         font-size: 20px;
       }
       .title {
-        font-size: 20px;
         margin-left: 5px;
       }
-      .percent {
-        float: right;
+      .right {
+        flex: 1;
+        text-align: right;
       }
     }
     .content {
@@ -170,12 +173,18 @@ body {
     }
     .footer {
       box-sizing: border-box;
+      display: flex;
+      align-items: center;
       height: 25px;
       line-height: 25px;
       font-size: 12px;
       border-top: solid 1px $color-gray;
       .iconfont {
         font-size: 12px;
+      }
+      .right {
+        flex: 1;
+        text-align: right;
       }
     }
   }

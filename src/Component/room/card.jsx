@@ -30,8 +30,8 @@ class Card extends React.Component {
       {
         text: 'OK',
         onPress: () => {
-          console.log('ok')
-          this.props.apiEnterRoom('test_room_id')
+          // console.log(this.props)
+          this.props.apiEnterRoom('test_room_id', this.props.redirect)
         }
       }
     ])
@@ -75,6 +75,7 @@ class Card extends React.Component {
 }
 
 export default connect(
-  (state) => ({}),
+  (state) => ({
+  }),
   action
 )(Card)

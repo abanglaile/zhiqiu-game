@@ -17,7 +17,7 @@ export const requireEnterRoom = UserAuthWrapper({
   },
   failureRedirectPath: (state, ownProps) => {
     // console.log('ownProps.location :', ownProps.location)
-    return '/zhiqiu-game/room'
+    return '/zhiqiu-game/room?redirect=' + ownProps.location.pathname
   },
   redirectAction: routerActions.push,
   wrapperDisplayName: 'UserIsEnterRoom'

@@ -6,10 +6,14 @@ import Tabbar from '@/Component/foundation/tabbar'
 class Bone extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
-      selectedTab: 'dashboard',
-      hidden: false
-    }
+    this.state = {}
+  }
+
+  componentDidMount () {
+    // console.log(this.props.router)
+  }
+  componentWillUpdate (nextProps, nextState) {
+    // console.log(this.props.pathname)
   }
 
   render () {
@@ -18,14 +22,15 @@ class Bone extends React.Component {
         <div className="module">
           {this.props.children}
         </div>
-        <Tabbar></Tabbar>
+        <Tabbar pathname={ this.props.pathname }></Tabbar>
       </div>
     )
   }
 }
 
 export default connect(
-  (state) => ({
+  (state, ownProps) => ({
+    pathname: ownProps.location.pathname
   }),
   (dispatch) => ({
   })

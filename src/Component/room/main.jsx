@@ -13,7 +13,9 @@ class Room extends React.Component {
 
   componentWillMount () {}
 
-  componentDidMount () {}
+  componentDidMount () {
+    console.log(this.props)
+  }
 
   componentWillUnmount () {}
 
@@ -25,25 +27,29 @@ class Room extends React.Component {
           title="五三讨伐大厅"
           description="为了讨伐‘五三’的冒险者们自发建立的大厅...."
           admin="知秋教育动物园分店"
-          number="26">
+          number="26"
+          redirect={this.props.redirect}>
         </Card>
         <Card
           title="音律练功房"
           description="因为练歌被邻居投诉而一怒之下创建而来...."
           admin="星海学院"
-          number="12">
+          number="12"
+          redirect={this.props.redirect}>
         </Card>
         <Card
           title="独木桥"
           description="据说每年都会有千军万马卡在这座桥上...."
           admin="知秋教育总店"
-          number="45">
+          number="45"
+          redirect={this.props.redirect}>
         </Card>
         <Card
           title="独木桥2"
           description="据说每年都会有千军万马卡在这座桥上...."
           admin="知秋教育总店"
-          number="9">
+          number="9"
+          redirect={this.props.redirect}>
         </Card>
       </div>
     )
@@ -51,8 +57,8 @@ class Room extends React.Component {
 }
 
 export default connect(
-  (state) => ({
-    prop: state.demoReducer.toJS().json.prop
+  (state, ownProps) => ({
+    redirect: ownProps.location.query.redirect ? ownProps.location.query.redirect : '/zhiqiu-game'
   }),
   (dispatch) => ({
     onClick: () => {

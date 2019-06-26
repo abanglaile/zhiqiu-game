@@ -16,7 +16,7 @@ class Tabbar extends React.Component {
 
   componentWillUnmount () {}
 
-  render () {
+  TabbarRoot (props) {
     return (
       <div>
         <TabBar
@@ -31,9 +31,9 @@ class Tabbar extends React.Component {
             selectedIcon={<i className="selected iconfont icon-file-exception"></i>}
             selected={this.state.selectedTab === 'Quest'}
             onPress={() => {
-              this.setState({
-                selectedTab: 'Quest'
-              })
+              // this.setState({
+              //   selectedTab: 'Quest'
+              // })
               browserHistory.push('/zhiqiu-game/')
             }}
             data-seed="logId"
@@ -47,9 +47,6 @@ class Tabbar extends React.Component {
             selectedIcon={<i className="selected iconfont icon-rank3"></i>}
             selected={this.state.selectedTab === 'Rank'}
             onPress={() => {
-              this.setState({
-                selectedTab: 'Rank'
-              })
               browserHistory.push('/zhiqiu-game/room')
             }}
             data-seed="logId"
@@ -74,9 +71,6 @@ class Tabbar extends React.Component {
             selectedIcon={<i className="selected iconfont icon-team1"></i>}
             selected={this.state.selectedTab === 'Room'}
             onPress={() => {
-              this.setState({
-                selectedTab: 'Room'
-              })
             }}
             data-seed="logId"
           >
@@ -89,9 +83,6 @@ class Tabbar extends React.Component {
             selectedIcon={<i className="selected iconfont icon-user"></i>}
             selected={this.state.selectedTab === 'Account'}
             onPress={() => {
-              this.setState({
-                selectedTab: 'Account'
-              })
               browserHistory.push('/zhiqiu-game/account')
             }}
             data-seed="logId"
@@ -102,6 +93,63 @@ class Tabbar extends React.Component {
         <div className="new-wrapper">
           <i className="iconfont icon-plus"></i>
         </div>
+      </div>
+    )
+  }
+
+  TabbarRank (props) {
+    return (
+      <TabBar
+        unselectedTintColor="#949494"
+        tintColor="#33A3F4"
+        barTintColor="RGBA(250, 250, 250, 1)"
+      >
+        <TabBar.Item
+          title="Quest"
+          key="Quest"
+          icon={<i className="iconfont icon-file-exception"></i>}
+          selectedIcon={<i className="selected iconfont icon-file-exception"></i>}
+          selected={this.state.selectedTab === 'Quest'}
+          onPress={() => {
+            browserHistory.push('/zhiqiu-game/')
+          }}
+          data-seed="logId"
+        >
+        </TabBar.Item>
+
+        <TabBar.Item
+          title="Rank"
+          key="Rank"
+          icon={<i className="iconfont icon-rank3"></i>}
+          selectedIcon={<i className="selected iconfont icon-rank3"></i>}
+          selected={this.state.selectedTab === 'Rank'}
+          onPress={() => {
+            browserHistory.push('/zhiqiu-game/room')
+          }}
+          data-seed="logId"
+        >
+        </TabBar.Item>
+      </TabBar>
+    )
+  }
+
+  Judge (props) {
+    let list = this.props.pathname ? this.props.pathname.split('/') : []
+    let path = list.length > 2 ? list[2] : ''
+    switch (path) {
+      case '':
+        return this.TabbarRoot()
+      case 'account':
+        return this.TabbarRank()
+      default:
+        return this.TabbarRoot()
+    }
+  }
+
+  render () {
+    return (
+      <div>
+        {this.Judge()}
       </div>
     )
   }

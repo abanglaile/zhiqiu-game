@@ -16,12 +16,14 @@ export const actionEnterRoom = (id) => {
 
 export const apiGetRoom = () => {}
 
-export const apiEnterRoom = (id) => {
+export const apiEnterRoom = (id, redirect) => {
   return (dispatch) => {
     // 待补全选择房间成功后的跳转代码
     dispatch(actionEnterRoom(id))
+    dispatch(push(redirect))
   }
 }
+
 // export const getWxAuth = (code, state) => {
 //   let url = target + '/get_wx_auth'
 //   return (dispatch) => {

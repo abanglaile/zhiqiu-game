@@ -56,7 +56,16 @@ const generateConfig = env => ({
           formatter: require('eslint-friendly-formatter')
         }
       },
-      { test: /\.(jsx|js)$/, exclude: /node_modules/, loader: 'babel-loader' },
+      {
+        test: /\.(jsx|js)$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
       { test: /\.(png|gif|jpg|jpeg|bmp)$/i, exclude: /node_modules/, loader: "url-loader?limit=8192" },
       {
         test: /\.(scss|sass)$/,

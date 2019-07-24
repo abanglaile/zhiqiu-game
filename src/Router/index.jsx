@@ -10,7 +10,9 @@ import Bone from '@/Component/foundation/bone'
 
 import Room from '@/Component/room/main'
 
-import Course from '@/Component/course/main'
+import Course from '@/Component/course/'
+import History from '@/Component/course/history'
+
 import Account from '@/Component/account/main'
 
 let appid = config.appid
@@ -30,6 +32,7 @@ const routes = (
   <Route path="/zhiqiu-game" component={Bone}>
     <IndexRoute component={Course} />
     <Route path="room" component={Room} />
+    <Route path="history" component={History} />
     <Route path="account" component={Account} />
   </Route>
 )

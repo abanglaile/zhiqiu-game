@@ -55,15 +55,15 @@ body {
     @extend %common;
     height: 100%;
   }
-  .module {
-    @extend %common;
-    position: relative;
-    width: 100%;
-    height: calc(100% - #{$tabbar-height});
-    padding: 10px;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
+  // .module {
+  //   @extend %common;
+  //   position: relative;
+  //   width: 100%;
+  //   height: calc(100% - #{$tabbar-height});
+  //   padding: 10px;
+  //   overflow-x: hidden;
+  //   overflow-y: auto;
+  // }
   .am-tab-bar {
     @extend %common;
     position: fixed;

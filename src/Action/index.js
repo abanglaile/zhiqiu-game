@@ -23,6 +23,35 @@ export const demoRequest = () => {
   }
 }
 
+export const getStuOnlineTask = (student_id) => {
+  let url = target + '/getStuTasklog'
+  return (dispatch) => {
+    return axios.get(url, {
+      params: {
+        student_id,
+        online: true
+      }
+    }).then((response) => {
+      dispatch({
+        type: 'GET_ONLINE_TASKLOG',
+        json: response.data
+      })
+    })
+  }
+}
+
+export const deleteTaskLog = (task_id, student_id) => {
+  let url = target + '/deleteTaskLog'
+  return (dispatch) => {
+    return axios.post(url, {
+      task_id,
+      student_id
+    }).then((response) => {
+      dispatch(getStuOnlineTask(student_id))
+    })
+  }
+}
+
 // // Sign by User & Passwd
 // let target = config.server_url
 //

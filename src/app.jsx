@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom'
 import { Router } from 'react-router'
 import { Provider } from 'react-redux'
 
-import 'antd-mobile/dist/antd-mobile.css'
 import '@/Assets/icon/iconfont.css'
-import '@/Assets/sass/main.scss'
+// import '@/Assets/sass/main.scss'
 
 import { store, history } from '@/Store/index'
 import Routes from '@/Router/index'

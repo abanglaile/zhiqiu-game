@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, IndexRoute, Redirect } from 'react-router'
+import { Route, IndexRoute } from 'react-router'
 import { connect } from 'react-redux'
 
 import { requireAuthentication, requireEnterRoom } from '../utils'
@@ -7,12 +7,13 @@ import { store } from '@/Store/index'
 import config from '@/utils/Config'
 
 import Bone from '@/Component/foundation/bone'
-import Room from '@/Component/room/main'
-import Course from '@/Component/course/main'
-import Account from '@/Component/account/main'
 
-import Bonesub from '@/Component/foundation/bonesub'
-import Plus from '@/Component/plus/main'
+import Room from '@/Component/room/main'
+
+import Course from '@/Component/course/'
+import History from '@/Component/course/history'
+
+import Account from '@/Component/account/main'
 
 let appid = config.appid
 let redirectURI = config.redirect_uri
@@ -28,18 +29,13 @@ let redirectURI = config.redirect_uri
 // }
 
 const routes = (
-  <div>
-    <Redirect from="/" to="/zhiqiu-game/bone" />
-    <Route path="/zhiqiu-game/bone" component={requireAuthentication(Bone)}>
-      <IndexRoute component={Course} />
-      <Route path="room" component={Room} />
-      <Route path="account" component={requireEnterRoom(Account)} />
-    </Route>
-    <Route path="/zhiqiu-game/bonesub" component={requireAuthentication(Bonesub)} >
-      <Route path="plus" component={requireEnterRoom(Plus)} />
-    </Route>
-  </div>
+  <Route path="/zhiqiu-game" component={requireAuthentication(Bone)}>
+    <IndexRoute component={Course} />
+    <Route path="room" component={Room} />
+    <Route path="account" component={requireEnterRoom(Account)} />
+  </Route>
 )
+// <Route path="/zhiqiu-game" component={requireAuthentication(Bone)}>
 // <Route path="login" component={Room} onEnter={redirectToWechat} />
 
 export default routes

@@ -11,7 +11,8 @@
     // allow debugger during development
     'no-debugger': 1,
     // allow unused vars
-    'no-unused-vars': 0
+    'no-unused-vars': 0,
+    'camelcase': 0
   },
   "parser": "babel-eslint",
   "parserOptions": {},

@@ -2,10 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router } from 'react-router'
 import { Provider } from 'react-redux'
-
 import '@/Assets/sass/main.scss'
-// import '@/Assets/icon/iconfont.css' // online link in template file
-
 import { store, history } from '@/Store/index'
 import Routes from '@/Router/index'
 import { getWxUserInfoSuccess } from '@/Action/wxsign'
@@ -21,9 +18,14 @@ let token = JSON.stringify({
 if (token !== null) {
   store.dispatch(getWxUserInfoSuccess(token))
 }
-let room = localStorage.getItem('room_id')
+let room = localStorage.getItem('room_info')
 if (room !== null) {
-  store.dispatch(actionEnterRoom(room))
+  room = JSON.parse(room)
+  // console.log(room)
+  let today = new Date().toLocaleDateString()
+  if (room.date === today) {
+    store.dispatch(actionEnterRoom(room))
+  }
 }
 
 ReactDOM.render(

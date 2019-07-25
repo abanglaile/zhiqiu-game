@@ -31,7 +31,12 @@ class Card extends React.Component {
         text: 'OK',
         onPress: () => {
           // console.log(this.props)
-          this.props.apiEnterRoom('test_room_id', this.props.redirect)
+          let info = {
+            date: new Date().toLocaleDateString(),
+            name: this.props.title,
+            id: 'test_room_id'
+          }
+          this.props.apiEnterRoom(info, this.props.redirect)
         }
       }
     ])

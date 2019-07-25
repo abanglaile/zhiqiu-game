@@ -28,7 +28,7 @@ class Template extends React.Component {
   render () {
     return (
       <div className="account">
-        <Title title="个人信息" icon="icon-user"></Title>
+        <Title title="个人信息"></Title>
         <Card full>
           <div className="background">
             <div className="logo">

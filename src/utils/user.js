@@ -5,6 +5,7 @@ import config from './Config'
 
 let appid = config.appid
 let redirectURI = config.redirect_uri
+let roomURL = config.room_url
 
 export const requireEnterRoom = UserAuthWrapper({
   authSelector: state => {
@@ -17,7 +18,7 @@ export const requireEnterRoom = UserAuthWrapper({
   },
   failureRedirectPath: (state, ownProps) => {
     // console.log('ownProps.location :', ownProps.location)
-    return '/zhiqiu-game/room?redirect=' + ownProps.location.pathname
+    return roomURL + '?redirect=' + ownProps.location.pathname
   },
   redirectAction: routerActions.push,
   wrapperDisplayName: 'UserIsEnterRoom'

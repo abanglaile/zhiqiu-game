@@ -1,7 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { Icon, TabBar } from 'antd-mobile'
+import { TabBar } from 'antd-mobile'
+import config from '@/utils/Config'
+
+let bone = config.bone_url
+let bonesub = config.bone_sub_url
 
 class Tabbar extends React.Component {
   constructor (props) {
@@ -16,7 +20,7 @@ class Tabbar extends React.Component {
 
   componentWillUnmount () {}
 
-  TabbarRoot (props) {
+  Tabbar (props) {
     return (
       <div>
         <TabBar
@@ -34,7 +38,7 @@ class Tabbar extends React.Component {
               // this.setState({
               //   selectedTab: 'Quest'
               // })
-              browserHistory.push('/zhiqiu-game/')
+              browserHistory.push(bone)
             }}
             data-seed="logId"
           >
@@ -47,19 +51,21 @@ class Tabbar extends React.Component {
             selectedIcon={<i className="selected iconfont icon-rank3"></i>}
             selected={this.state.selectedTab === 'Rank'}
             onPress={() => {
-              browserHistory.push('/zhiqiu-game/room')
+              browserHistory.push(`${bone}/room`)
             }}
             data-seed="logId"
           >
           </TabBar.Item>
 
           <TabBar.Item
-            title="-"
-            key="nothing"
-            icon={<i className="iconfont icon-course"></i>}
-            selectedIcon={<i className="selected iconfont icon-course"></i>}
-            selected={this.state.selectedTab === 'nothing'}
-            onPress={() => { }}
+            title="Plus"
+            key="Plus"
+            icon={<i className="iconfont icon-plus"></i>}
+            selectedIcon={<i className="selected iconfont icon-plus"></i>}
+            selected={this.state.selectedTab === 'Plus'}
+            onPress={() => {
+              browserHistory.push(`${bonesub}/plus`)
+            }}
             data-seed="logId"
           >
           </TabBar.Item>
@@ -83,73 +89,21 @@ class Tabbar extends React.Component {
             selectedIcon={<i className="selected iconfont icon-user"></i>}
             selected={this.state.selectedTab === 'Account'}
             onPress={() => {
-              browserHistory.push('/zhiqiu-game/account')
+              browserHistory.push(`${bone}/account`)
             }}
             data-seed="logId"
           >
           </TabBar.Item>
 
         </TabBar>
-        <div className="new-wrapper">
-          <i className="iconfont icon-plus"></i>
-        </div>
       </div>
     )
-  }
-
-  TabbarRank (props) {
-    return (
-      <TabBar
-        unselectedTintColor="#949494"
-        tintColor="#33A3F4"
-        barTintColor="RGBA(250, 250, 250, 1)"
-      >
-        <TabBar.Item
-          title="Quest"
-          key="Quest"
-          icon={<i className="iconfont icon-file-exception"></i>}
-          selectedIcon={<i className="selected iconfont icon-file-exception"></i>}
-          selected={this.state.selectedTab === 'Quest'}
-          onPress={() => {
-            browserHistory.push('/zhiqiu-game/')
-          }}
-          data-seed="logId"
-        >
-        </TabBar.Item>
-
-        <TabBar.Item
-          title="Rank"
-          key="Rank"
-          icon={<i className="iconfont icon-rank3"></i>}
-          selectedIcon={<i className="selected iconfont icon-rank3"></i>}
-          selected={this.state.selectedTab === 'Rank'}
-          onPress={() => {
-            browserHistory.push('/zhiqiu-game/room')
-          }}
-          data-seed="logId"
-        >
-        </TabBar.Item>
-      </TabBar>
-    )
-  }
-
-  Judge (props) {
-    let list = this.props.pathname ? this.props.pathname.split('/') : []
-    let path = list.length > 2 ? list[2] : ''
-    switch (path) {
-      case '':
-        return this.TabbarRoot()
-      case 'account':
-        return this.TabbarRank()
-      default:
-        return this.TabbarRoot()
-    }
   }
 
   render () {
     return (
       <div>
-        {this.Judge()}
+        {this.Tabbar()}
       </div>
     )
   }

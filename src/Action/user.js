@@ -6,20 +6,20 @@ import config from '../utils/Config'
 let target = config.server_url
 
 // User Action
-export const actionEnterRoom = (id) => {
-  localStorage.setItem('room_id', id)
+export const actionEnterRoom = (info) => {
+  localStorage.setItem('room_info', JSON.stringify(info))
   return {
     type: 'ENTER_ROOM',
-    id: id
+    info: info
   }
 }
 
 export const apiGetRoom = () => {}
 
-export const apiEnterRoom = (id, redirect) => {
+export const apiEnterRoom = (info, redirect) => {
   return (dispatch) => {
     // 待补全选择房间成功后的跳转代码
-    dispatch(actionEnterRoom(id))
+    dispatch(actionEnterRoom(info))
     dispatch(push(redirect))
   }
 }

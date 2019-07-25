@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import QueueAnim from 'rc-queue-anim'
 
 import Tabbar from '@/Component/foundation/tabbar'
 
@@ -18,12 +19,14 @@ class Bone extends React.Component {
 
   render () {
     return (
-      <div className="bone">
-        <div className="module">
-          {this.props.children}
+      <QueueAnim type="left" duration={750}>
+        <div className="bone" key="bone">
+          <div className="module">
+            {this.props.children}
+          </div>
+          <Tabbar pathname={this.props.pathname}></Tabbar>
         </div>
-        <Tabbar pathname={ this.props.pathname }></Tabbar>
-      </div>
+      </QueueAnim>
     )
   }
 }

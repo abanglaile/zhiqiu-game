@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Title from '@/Component/foundation/title'
 import { demoAction } from '@/Action/index'
+
+import Title from '@/Component/foundation/title'
 
 class Template extends React.Component {
   constructor (props) {
@@ -24,7 +25,7 @@ class Template extends React.Component {
   render () {
     return (
       <div>
-        <Title title="Template"></Title>
+        <Title title="目标" subtitle></Title>
         <div>
           Origin React Component
           <button onClick = {this.method}>Method Action</button>

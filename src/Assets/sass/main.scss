@@ -21,6 +21,14 @@ $new-wrapper-size: 70px;
   // line-height: 12px;
   transition: all .1s ease;
 }
+%fix-full {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 %center-row {
   display: flex;
   flex-direction: row;
@@ -54,32 +62,30 @@ body {
   height: 100%;
   background-color: $color-background;
   .bone {
-    @extend %common;
-    height: 100%;
-  }
-  .module {
-    @extend %common;
-    position: relative;
-    width: 100%;
-    margin-top: 0;
-    height: calc(100% - #{$tabbar-height});
-    padding: 10px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    .title-wrapper {
+    @extend %fix-full;
+    .module {
       @extend %common;
-      margin-bottom: 10px;
-      .iconfont {
-        font-size: 25px;
-        padding-right: 10px;
-        margin-right: 10px;
-        border-right: solid 1px;
-      }
-      .title {
-        font-size: 22px;
-      }
+      position: relative;
+      width: 100%;
+      margin-top: 0;
+      height: calc(100% - #{$tabbar-height});
+      padding: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
   }
+  .bone-sub {
+    @extend %fix-full;
+    height: 100%;
+    .navbar {
+      @extend %common;
+    }
+    .module {
+      @extend %common;
+      position: relative;
+    }
+  }
+  
   .am-tab-bar {
     @extend %common;
     position: fixed;

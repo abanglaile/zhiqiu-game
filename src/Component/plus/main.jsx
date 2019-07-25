@@ -18,23 +18,19 @@ class Template extends React.Component {
 
   componentWillUnmount () {}
 
-  method = () => {
-    this.setState({ prop: 2 })
-  }
-
   render () {
     return (
       <div>
         <Title title="目标" subtitle></Title>
         <div>
           Origin React Component
-          <button onClick = {this.method}>Method Action</button>
+          <button>Method Action</button>
           {this.state.prop}
         </div>
         <div>
           Redux React Component
-          <button onClick = {this.props.onClick}>Redux Action</button>
-          <div>{this.props.prop}</div>
+          <button>Redux Action</button>
+          <div>{this.state.prop}</div>
         </div>
       </div>
     )
@@ -43,11 +39,7 @@ class Template extends React.Component {
 
 export default connect(
   (state) => ({
-    prop: state.demoReducer.toJS().json.prop
   }),
   (dispatch) => ({
-    onClick: () => {
-      dispatch(demoAction({ prop: 'kiiil' }))
-    }
   })
 )(Template)

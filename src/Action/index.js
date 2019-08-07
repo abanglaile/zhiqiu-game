@@ -2,10 +2,10 @@ import { push } from 'react-router-redux'
 import { message } from 'antd'
 import axios from 'axios'
 
-import config from '../utils/Config'
+// import config from '../utils/Config'
 
-// let target = process.server_url
-let target = config.server_url
+// let target = config.server_url
+let target = process.server_url
 
 // Template
 // Action Defination

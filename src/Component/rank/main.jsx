@@ -24,7 +24,7 @@ class Template extends React.Component {
   render () {
     return (
       <div>
-        <Title title="Template"></Title>
+        <Title title="学士走廊"></Title>
         <div>
           Origin React Component
           <button onClick = {this.method}>Method Action</button>

@@ -1,20 +1,18 @@
 import { UserAuthWrapper } from 'redux-auth-wrapper'
 import { routerActions } from 'react-router-redux'
 
-import config from './Config'
-
-let appid = config.appid
-let redirectURI = config.redirect_uri
-let roomURL = config.room_url
+let appid = process.appid
+let redirectURI = process.redirect_uri
+let roomURL = process.room_url
 
 export const requireEnterRoom = UserAuthWrapper({
   authSelector: state => {
     // alert('state:'+JSON.stringify(state))
-    return state.UserData
+    return state.RoomData
   },
-  predicate: UserData => {
+  predicate: RoomData => {
     // alert('AuthData:'+JSON.stringify(AuthData))
-    return UserData.get('isRoomSelected')
+    return RoomData.get('isRoomSelected')
   },
   failureRedirectPath: (state, ownProps) => {
     // console.log('ownProps.location :', ownProps.location)

@@ -6,7 +6,7 @@ import '@/Assets/sass/main.scss'
 import { store, history } from '@/Store/index'
 import Routes from '@/Router/index'
 import { getWxUserInfoSuccess } from '@/Action/wxsign'
-import { actionEnterRoom } from '@/Action/user'
+import { actionEnterRoom } from '@/Action/room'
 
 let token = JSON.stringify({
   'userid': '4e1845e0644711e98a720fd6f7c4240e',

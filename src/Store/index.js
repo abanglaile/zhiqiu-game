@@ -6,13 +6,15 @@ import thunk from 'redux-thunk'
 import * as reducerIndex from '@/Reducer/index'
 import * as reducerWXSign from '@/Reducer/wxsign'
 import * as reducerUser from '@/Reducer/user'
+import * as reducerRoom from '@/Reducer/room'
 
 const middleware = routerMiddleware(browserHistory)
 export const store = createStore(
   combineReducers({
     ...reducerIndex,
     ...reducerWXSign,
-    ...reducerUser,
+    // ...reducerUser,
+    ...reducerRoom,
     routing: routerReducer
   }),
   applyMiddleware(middleware, thunk)

@@ -1,10 +1,8 @@
 import { UserAuthWrapper } from 'redux-auth-wrapper'
 import { routerActions } from 'react-router-redux'
 
-import config from './Config'
-
-let appid = config.appid
-let redirectURI = config.redirect_uri
+let appid = process.appid
+let redirectURI = process.redirect_uri
 
 export const requireAuthentication = UserAuthWrapper({
   authSelector: state => {

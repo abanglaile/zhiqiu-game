@@ -1,4 +1,3 @@
-let config = require('../config/dev.js')
 const webpack = require("webpack")
 const path = require("path")
 // const OpenBrowserPlugin = require('open-browser-webpack-plugin')
@@ -24,12 +23,7 @@ module.exports = {
     historyApiFallback: true // 保证刷新后可以正常访问router url
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(), // hot module replace
-    new webpack.DefinePlugin({
-      // environment parameters definition
-      // __DEV__: JSON.stringify(JSON.parse((process.env.NODE_ENV == 'dev') || 'false'))
-      'process.server_url': JSON.stringify(config.server_url)
-    })
+    new webpack.HotModuleReplacementPlugin() // hot module replace
     // ...otherPlugins
   ]
 }

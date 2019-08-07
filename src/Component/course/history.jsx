@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as action from '@/Action/index'
 import { Flex, List, Icon, Button, Tag, Tabs, SwipeAction } from 'antd-mobile'
-// const F2 = require('@antv/f2')
+const F2 = require('@antv/f2')
 
 const Item = List.Item
 const Brief = Item.Brief

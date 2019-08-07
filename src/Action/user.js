@@ -1,28 +1,25 @@
 import { push } from 'react-router-redux'
 
-import config from '../utils/Config'
-
-// let target = process.server_url
-let target = config.server_url
+let target = process.server_url
 
 // User Action
-export const actionEnterRoom = (info) => {
-  localStorage.setItem('room_info', JSON.stringify(info))
-  return {
-    type: 'ENTER_ROOM',
-    info: info
-  }
-}
+// export const actionEnterRoom = (info) => {
+//   localStorage.setItem('room_info', JSON.stringify(info))
+//   return {
+//     type: 'ENTER_ROOM',
+//     info: info
+//   }
+// }
 
-export const apiGetRoom = () => {}
+// export const apiGetRoom = () => {}
 
-export const apiEnterRoom = (info, redirect) => {
-  return (dispatch) => {
-    // 待补全选择房间成功后的跳转代码
-    dispatch(actionEnterRoom(info))
-    dispatch(push(redirect))
-  }
-}
+// export const apiEnterRoom = (info, redirect) => {
+//   return (dispatch) => {
+//     // 待补全选择房间成功后的跳转代码
+//     dispatch(actionEnterRoom(info))
+//     dispatch(push(redirect))
+//   }
+// }
 
 // export const getWxAuth = (code, state) => {
 //   let url = target + '/get_wx_auth'

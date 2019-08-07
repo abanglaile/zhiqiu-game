@@ -1,22 +1,21 @@
 import React from 'react'
 import { Route, IndexRoute, Redirect } from 'react-router'
-import { connect } from 'react-redux'
 
 import { requireAuthentication, requireEnterRoom } from '../utils'
 import { store } from '@/Store/index'
-import config from '@/utils/Config'
 
 import Bone from '@/Component/foundation/bone'
 import Room from '@/Component/room/main'
 import Course from '@/Component/course/'
 import History from '@/Component/course/history'
 import Account from '@/Component/account/main'
+import Rank from '@/Component/rank/main'
 
 import Bonesub from '@/Component/foundation/bonesub'
 import Plus from '@/Component/plus/main'
 
-let appid = config.appid
-let redirectURI = config.redirect_uri
+let appid = process.appid
+let redirectURI = process.redirect_uri
 
 // const redirectToWechat = (state) => {
 //   let status = store.getState().AuthData.get('isAuthenticated')
@@ -32,9 +31,10 @@ const routes = (
   <div>
     <Redirect from="/" to="/zhiqiu-game/bone"></Redirect>
     <Route path="/zhiqiu-game/bone" component={requireAuthentication(Bone)}>
-      <IndexRoute component={Course} />
+      <IndexRoute component={requireEnterRoom(Course)} />
       <Route path="room" component={Room} />
       <Route path="history" component={requireEnterRoom(History)} />
+      <Route path="rank" component={requireEnterRoom(Rank)} />
       <Route path="account" component={requireEnterRoom(Account)} />
     </Route>
     <Route path="/zhiqiu-game/bonesub" component={requireAuthentication(Bonesub)}>

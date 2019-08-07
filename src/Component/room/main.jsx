@@ -1,10 +1,15 @@
 import React from 'react'
 import QueueAnim from 'rc-queue-anim'
+import { List, Modal } from 'antd-mobile'
 import { connect } from 'react-redux'
-import { demoAction } from '@/Action/index'
+
+import * as action from '@/Action/room'
 
 import Title from '@/Component/foundation/title'
-import Card from '@/Component/room/card'
+
+const Item = List.Item
+const Brief = Item.Brief
+const alert = Modal.alert
 
 class Room extends React.Component {
   constructor (props) {
@@ -15,49 +20,53 @@ class Room extends React.Component {
   componentWillMount () {}
 
   componentDidMount () {
-    // console.log(this.props)
+    this.props.apiGetRoom()
   }
 
   componentWillUnmount () {}
 
+  showAlert = (room, user_id) => {
+    const alertInstance = alert(`${room.name}`, '即将进入，开启学习远征，确认？', [
+      { text: 'Cancel', style: 'default', onPress: () => console.log('cancel') },
+      {
+        text: 'OK',
+        onPress: () => {
+          // console.log(this.props)
+          let info = {
+            date: new Date().toLocaleDateString(),
+            name: room.name,
+            id: room.id
+          }
+          this.props.apiEnterRoom(info, user_id, this.props.redirect)
+        }
+      }
+    ])
+  }
+
+  Rooms () {
+    return this.props.rooms.map((room) =>
+      <Item
+        key={room.id}
+        arrow="horizontal"
+        thumb="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565019449002&di=ee51ec5c932980b96e0366d40f41c040&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01ab7757a006170000018c1b6370e5.jpg%401280w_1l_2o_100sh.jpg"
+        multipleLine
+        onClick={() => { this.showAlert(room, this.props.user_id) }}
+      >
+        {room.name}
+        <Brief>{room.description}</Brief>
+      </Item>
+    )
+  }
+
   render () {
     return (
       <div className="room">
-        <Title title="签约自习室"></Title>
-        <QueueAnim delay={150}>
-          <Card
-            key="a"
-            title="五三讨伐大厅"
-            description="为了讨伐‘五三’的冒险者们自发建立的大厅...."
-            admin="知秋教育动物园分店"
-            number="26"
-            redirect={this.props.redirect}>
-          </Card>
-          <Card
-            key="b"
-            title="音律练功房"
-            description="因为练歌被邻居投诉而一怒之下创建而来...."
-            admin="星海学院"
-            number="12"
-            redirect={this.props.redirect}>
-          </Card>
-          <Card
-            key="c"
-            title="独木桥"
-            description="据说每年都会有千军万马卡在这座桥上...."
-            admin="知秋教育总店"
-            number="45"
-            redirect={this.props.redirect}>
-          </Card>
-          <Card
-            key="d"
-            title="独木桥2"
-            description="据说每年都会有千军万马卡在这座桥上...."
-            admin="知秋教育总店"
-            number="9"
-            redirect={this.props.redirect}>
-          </Card>
-        </QueueAnim>
+        <Title title="自习室"></Title>
+        <List renderHeader={() => '欢迎来到知秋，选择今天的自习室'} className="my-list">
+          <QueueAnim delay={150}>
+            {this.Rooms()}
+          </QueueAnim>
+        </List>
       </div>
     )
   }
@@ -65,11 +74,9 @@ class Room extends React.Component {
 
 export default connect(
   (state, ownProps) => ({
-    redirect: ownProps.location.query.redirect ? ownProps.location.query.redirect : '/zhiqiu-game'
+    redirect: ownProps.location.query.redirect ? ownProps.location.query.redirect : '/zhiqiu-game',
+    rooms: state.RoomData.toJS().rooms,
+    user_id: state.AuthData.toJS().userid
   }),
-  (dispatch) => ({
-    onClick: () => {
-      dispatch(demoAction({ prop: 'kiiil' }))
-    }
-  })
+  action
 )(Room)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Button, Modal } from 'antd-mobile'
-import * as action from '@/Action/user'
+import * as action from '@/Action/room'
 
 const alert = Modal.alert
 

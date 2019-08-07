@@ -5,8 +5,10 @@ const miniCssExtractPlugin = require('mini-css-extract-plugin')
 const autoprefixer = require('autoprefixer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const configDev = require('./webpack.config.dev.js')
-const configPro = require('./webpack.config.pro.js')
+const webConfDev = require('./webpack.config.dev.js')
+const webConfPro = require('./webpack.config.pro.js')
+const configDev = require('../config/dev.js')
+const configPro = require('../config/pro.js')
 
 // const Visualizer = require('webpack-visualizer-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
@@ -29,103 +31,116 @@ const postcssOpts = {
   ],
 }
 
-const generateConfig = env => ({
-  // entry: { "index": path.resolve(__dirname, '..', '/src/app.jsx') },
-  entry: { "index": './src/app.jsx' },
-  output: {
-    filename: '[name]-[hash:5].js',
-    chunkFilename: '[id].chunk.js',
-    path: path.join(__dirname, '..', 'dist'),
-    // publicPath: env === 'development' ? '/' : path.join(__dirname, '..', 'dist/')
-    publicPath: env === 'development' ? '/' : '/zhiqiu-game/'
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve('src')
+const generateConfig = env => {
+  const config = env === 'development' ? configDev : configPro
+  return {
+    // entry: { "index": path.resolve(__dirname, '..', '/src/app.jsx') },
+    entry: { "index": './src/app.jsx' },
+    output: {
+      filename: '[name]-[hash:5].js',
+      chunkFilename: '[id].chunk.js',
+      path: path.join(__dirname, '..', 'dist'),
+      // publicPath: env === 'development' ? '/' : path.join(__dirname, '..', 'dist/')
+      publicPath: env === 'development' ? '/' : '/zhiqiu-game/'
     },
-    extensions: ['.jsx', '.js', '.json'],
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(jsx|js)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [path.resolve('src'), path.resolve('test')],
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
+    resolve: {
+      alias: {
+        '@': path.resolve('src')
       },
-      {
-        test: /\.(jsx|js)$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
+      extensions: ['.jsx', '.js', '.json'],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(jsx|js)$/,
+          loader: 'eslint-loader',
+          enforce: 'pre',
+          include: [path.resolve('src'), path.resolve('test')],
           options: {
-            presets: ['@babel/preset-env']
+            formatter: require('eslint-friendly-formatter')
           }
-        }
-      },
-      { test: /\.(png|gif|jpg|jpeg|bmp)$/i, exclude: /node_modules/, loader: "url-loader?limit=8192" },
-      {
-        test: /\.(scss|sass)$/,
-        exclude: /node_modules/,
-        use: [
-          miniCssExtractPlugin.loader,
-          // { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'postcss-loader', options: postcssOpts },
-          { loader: 'sass-loader' },
-        ]
-      },
-      {
-        test: /\.css$/,
-        // include: /node_modules|antd\.css/,
-        use: [
-          miniCssExtractPlugin.loader,
-          // { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'postcss-loader', options: postcssOpts }
-        ]
-      },
-      {
-        test: /\.(eot|woff2?|ttf|svg)$/,
-        use: [
-          {
-            loader: "url-loader",
+        },
+        {
+          test: /\.(jsx|js)$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
             options: {
-              name: "[name]-[hash:5].min.[ext]",
-              limit: 5000, // fonts file size <= 5KB, use 'base64'; else, output svg file
-              publicPath: "fonts/",
-              outputPath: "fonts/"
+              presets: ['@babel/preset-env']
             }
           }
-        ]
-      }
+        },
+        { test: /\.(png|gif|jpg|jpeg|bmp)$/i, exclude: /node_modules/, loader: "url-loader?limit=8192" },
+        {
+          test: /\.(scss|sass)$/,
+          exclude: /node_modules/,
+          use: [
+            miniCssExtractPlugin.loader,
+            // { loader: 'style-loader' },
+            { loader: 'css-loader' },
+            { loader: 'postcss-loader', options: postcssOpts },
+            { loader: 'sass-loader' },
+          ]
+        },
+        {
+          test: /\.css$/,
+          // include: /node_modules|antd\.css/,
+          use: [
+            miniCssExtractPlugin.loader,
+            // { loader: 'style-loader' },
+            { loader: 'css-loader' },
+            { loader: 'postcss-loader', options: postcssOpts }
+          ]
+        },
+        {
+          test: /\.(eot|woff2?|ttf|svg)$/,
+          use: [
+            {
+              loader: "url-loader",
+              options: {
+                name: "[name]-[hash:5].min.[ext]",
+                limit: 5000, // fonts file size <= 5KB, use 'base64'; else, output svg file
+                publicPath: "fonts/",
+                outputPath: "fonts/"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    // externals: {
+    //   "react": "React",
+    //   "react-dom": "ReactDOM",
+    //   "@antv/f2": "F2",
+    // },
+    plugins: [
+      new miniCssExtractPlugin({
+        filename: 'focus.index.[contenthash:8].css'
+      }),
+      new HtmlWebpackPlugin({
+        filename: "index.html",
+        template: path.resolve(__dirname, "..", "src/index.html"),
+        hash: true,
+        minify: {
+          collapseWhitespace: true
+        }
+      }), // auto insert auto-created js & css file into html
+      // ...otherPlugins
+      new webpack.DefinePlugin({
+        // environment parameters definition
+        // __DEV__: JSON.stringify(JSON.parse((process.env.NODE_ENV == 'dev') || 'false'))
+        'process.server_url': JSON.stringify(config.server_url),
+        'process.appid': JSON.stringify(config.appid),
+        'process.redirect_uri': JSON.stringify(config.redirect_uri),
+        'process.bone_url': JSON.stringify(config.bone_url),
+        'process.bone_sub_url': JSON.stringify(config.bone_sub_url),
+        'process.room_url': JSON.stringify(config.room_url)
+      })
     ]
-  },
-  // externals: {
-  //   "react": "React",
-  //   "react-dom": "ReactDOM",
-  //   "@antv/f2": "F2",
-  // },
-  plugins: [
-    new miniCssExtractPlugin({
-      filename: 'focus.index.[contenthash:8].css'
-    }),
-    new HtmlWebpackPlugin({
-      filename: "index.html",
-      template: path.resolve(__dirname, "..", "src/index.html"),
-      hash: true,
-      minify: {
-        collapseWhitespace: true
-      }
-    }) // auto insert auto-created js & css file into html
-    // ...otherPlugins
-  ]
-})
+  }
+}
 
 module.exports = env => {
-  let config = env === 'development' ? configDev : configPro
-  return merge(generateConfig(env), config)
+  let webConf = env === 'development' ? webConfDev : webConfPro
+  return merge(generateConfig(env), webConf)
 }

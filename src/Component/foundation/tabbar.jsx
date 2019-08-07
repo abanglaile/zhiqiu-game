@@ -2,10 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { TabBar } from 'antd-mobile'
-import config from '@/utils/Config'
 
-let bone = config.bone_url
-let bonesub = config.bone_sub_url
+let bone = process.bone_url
+let bonesub = process.bone_sub_url
 
 class Tabbar extends React.Component {
   constructor (props) {
@@ -35,9 +34,9 @@ class Tabbar extends React.Component {
             selectedIcon={<i className="selected iconfont icon-file-exception"></i>}
             selected={this.state.selectedTab === 'Quest'}
             onPress={() => {
-              // this.setState({
-              //   selectedTab: 'Quest'
-              // })
+              this.setState({
+                selectedTab: 'Quest'
+              })
               browserHistory.push(bone)
             }}
             data-seed="logId"
@@ -51,7 +50,10 @@ class Tabbar extends React.Component {
             selectedIcon={<i className="selected iconfont icon-rank3"></i>}
             selected={this.state.selectedTab === 'Rank'}
             onPress={() => {
-              browserHistory.push(`${bone}/room`)
+              this.setState({
+                selectedTab: 'Rank'
+              })
+              browserHistory.push(`${bone}/rank`)
             }}
             data-seed="logId"
           >
@@ -77,6 +79,10 @@ class Tabbar extends React.Component {
             selectedIcon={<i className="selected iconfont icon-team1"></i>}
             selected={this.state.selectedTab === 'Room'}
             onPress={() => {
+              this.setState({
+                selectedTab: 'Room'
+              })
+              browserHistory.push(`${bone}/room`)
             }}
             data-seed="logId"
           >
@@ -89,6 +95,9 @@ class Tabbar extends React.Component {
             selectedIcon={<i className="selected iconfont icon-user"></i>}
             selected={this.state.selectedTab === 'Account'}
             onPress={() => {
+              this.setState({
+                selectedTab: 'Account'
+              })
               browserHistory.push(`${bone}/account`)
             }}
             data-seed="logId"

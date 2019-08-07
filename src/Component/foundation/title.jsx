@@ -2,10 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { NavBar, Icon } from 'antd-mobile'
-import config from '@/utils/Config'
 
-let bone = config.bone_url
-let bonesub = config.bone_sub_url
+let bone = process.bone_url
+let bonesub = process.bone_sub_url
 
 class Title extends React.Component {
   constructor (props) {
@@ -23,10 +22,10 @@ class Title extends React.Component {
     return (
       <NavBar
         mode="light"
-        icon={<Icon type="left" />}
         icon={
           <i
             className={`iconfont ${this.props.subtitle ? 'icon-left' : 'icon-home'}`}
+            style={{ 'fontSize': '20px' }}
             onClick={() => {
               if (this.props.subtitle) {
                 browserHistory.goBack()

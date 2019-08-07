@@ -1,9 +1,6 @@
 import { push } from 'react-router-redux'
 
-import config from '../utils/Config'
-
-// let target = process.server_url
-let target = config.server_url
+let target = process.server_url
 
 // // Sign by Wechat
 export const getWxUserInfoSuccess = (token) => {

@@ -1,5 +1,6 @@
 import React from 'react'
 import QueueAnim from 'rc-queue-anim'
+import { browserHistory } from 'react-router'
 import { List, Modal } from 'antd-mobile'
 import { connect } from 'react-redux'
 
@@ -17,7 +18,11 @@ class Room extends React.Component {
     this.state = {}
   }
 
-  componentWillMount () {}
+  componentWillMount () {
+    if (this.props.isRoomSelected) {
+      browserHistory.push(`${process.bone_sub_url}/room`)
+    }
+  }
 
   componentDidMount () {
     this.props.apiGetRoom()
@@ -76,7 +81,8 @@ export default connect(
   (state, ownProps) => ({
     redirect: ownProps.location.query.redirect ? ownProps.location.query.redirect : '/zhiqiu-game',
     rooms: state.RoomData.toJS().rooms,
-    user_id: state.AuthData.toJS().userid
+    user_id: state.AuthData.toJS().userid,
+    isRoomSelected: state.RoomData.toJS().isRoomSelected
   }),
   action
 )(Room)

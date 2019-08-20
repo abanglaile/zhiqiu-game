@@ -6,12 +6,14 @@ $color-dark: RGBA(83, 92, 100, 1.00);
 $color-brown: RGBA(149, 85, 0, 1.00);
 $color-gray: RGBA(239, 240, 244, 1.00);
 $color-border: RGBA(175, 175, 175, 0.9);
+$color-opacity-black: RGBA(0, 0, 0, 0.3);
 // $color-background: RGBA(245, 245, 249, 1.00);
 $color-background: RGBA(255, 255, 255, 1.00);
 $color-quality-white: RGBA(0, 0, 0, 1.00);
 $color-quality-green: RGBA(9, 240, 28, 1.00);
 $color-quality-orange: RGBA(198, 88, 0, 1.00);
 
+$navbar-height: 45px;
 $tabbar-height: 60px;
 $new-wrapper-size: 70px;
 
@@ -20,7 +22,7 @@ $new-wrapper-size: 70px;
   box-sizing: border-box;
   // font-size: 12px;
   // line-height: 12px;
-  transition: all .1s ease;
+  transition: all .3s ease;
 }
 %fix-full {
   box-sizing: border-box;
@@ -77,13 +79,18 @@ body {
   }
   .bone-sub {
     @extend %fix-full;
-    height: 100%;
     .navbar {
       @extend %common;
     }
     .module {
       @extend %common;
       position: relative;
+      width: 100%;
+      margin-top: 0;
+      height: 100%;
+      padding: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
   }
   
@@ -198,6 +205,122 @@ body {
         text-align: right;
       }
     }
+  }
+}
+.classroom {
+  @extend %common;
+  position: relative;
+  height: calc(100% - #{$navbar-height});
+  background-image: url('../pic/bg_classroom.jpg');
+  background-size: cover;
+  padding: 10px;
+  color: white;
+  .close {
+    @extend %common;
+    position: absolute;
+    z-index: 100;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+  }
+  .blackboard {
+    @extend %common;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: calc((100% - 20px) * 0.75 + 10px + 10px);
+    background-color: $color-opacity-black;
+    padding: 10px;
+    .title {
+      font-size: 25px;
+      font-weight: 900;
+    }
+    .description {
+      font-size: 16px;
+    }
+    .footer {
+      position: absolute;
+      bottom: 10px;
+      height: 32px;
+      line-height: 32px;
+      display: flex;
+      justify-content: space-between;
+      width: calc(100% - 20px);
+      .admin {
+        span {
+          font-size: 16px;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .blackboard:active {
+    background-color: RGBA(50, 50, 50, 0.3);
+  }
+  .table {
+    @extend %common;
+    @extend %center-row;
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    top: calc((100% - 20px) * 0.25 + 10px);
+    bottom: calc((100% - 20px) * 0.25 + 10px);
+    background-color: $color-opacity-black;
+    .circle {
+      @extend %common;
+      width: 220px;
+      height: 220px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: solid 1px white;
+      border-radius: 500px;
+      font-size: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .circle:active {
+      background-color: RGBA(255, 255, 255, 0.2);
+    }
+  }
+  .nameboard {
+    @extend %common;
+    @extend %center-column;
+    position: absolute;
+    left: 10px;
+    right: calc((100% - 20px) * 0.6 + 10px);
+    top: calc((100% - 20px) * 0.75 + 10px + 10px);
+    bottom: 10px;
+    background-color: $color-opacity-black;
+  }
+  .nameboard:active {
+    background-color: RGBA(50, 50, 50, 0.3);
+  }
+  .postboard {
+    @extend %common;
+    @extend %center-column;
+    position: absolute;
+    left: calc((100% - 20px) * 0.4 + 10px + 10px);
+    right: 10px;
+    top: calc((100% - 20px) * 0.75 + 10px + 10px);
+    bottom: 10px;
+    background-color: $color-opacity-black;
+  }
+  .postboard:active {
+    background-color: RGBA(50, 50, 50, 0.3);
+  }
+  .nameboard i, .postboard i {
+    font-size: 30px;
+  }
+  .nameboard span, .postboard span {
+    font-size: 26px;
+  } 
+  .number {
+    font-size: 45px;
+    font-weight: 700;
   }
 }
 .account {

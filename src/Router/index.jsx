@@ -13,6 +13,7 @@ import Rank from '@/Component/rank/main'
 
 import Bonesub from '@/Component/foundation/bonesub'
 import Plus from '@/Component/plus/main'
+import Classroom from '@/Component/room/room'
 
 let appid = process.appid
 let redirectURI = process.redirect_uri
@@ -39,6 +40,7 @@ const routes = (
     </Route>
     <Route path="/zhiqiu-game/bonesub" component={requireAuthentication(Bonesub)}>
       <Route path="plus" component={requireEnterRoom(Plus)} />
+      <Route path="room" component={requireEnterRoom(Classroom)} />
     </Route>
   </div>
 )

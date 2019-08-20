@@ -17,8 +17,30 @@ export const apiGetRoom = () => {
     return axios.get(url).then((response) => {
       // console.log(response.data)
       dispatch({
-        type: 'SET_ROOM',
+        type: 'SET_ROOMS',
         data: response.data
+      })
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
+}
+
+export const apiGetRoomByID = (id) => {
+  let url = target + '/getVirtualroomByID'
+  return (dispatch) => {
+    return axios.get(url, { params: { id } }).then((response) => {
+      // console.log(response.data)
+      let room = response.data
+      axios.get(target + '/getUserInfo', { params: { userid: room.admin_id } }).then((response) => {
+        // console.log(response.data)
+        room.admin = response.data
+        dispatch({
+          type: 'SET_ROOM',
+          data: room
+        })
+      }).catch((error) => {
+        console.log(error)
       })
     }).catch((error) => {
       console.log(error)
@@ -34,7 +56,7 @@ export const apiEnterRoom = (info, user_id, redirect) => {
       user_id
     }
     return axios.post(url, data).then((response) => {
-      console.log(response)
+      // console.log(response)
       localStorage.setItem('room_info', JSON.stringify(info))
       dispatch(actionEnterRoom(info))
       dispatch(push(redirect))

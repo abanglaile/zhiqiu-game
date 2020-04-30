@@ -65,7 +65,7 @@
     "axios": "^0.17.1",
     "es6-promise": "^4.2.6",
     "immutable": "^4.0.0-rc.12",
-    "jquery": "^2.2.4",
+    "jquery": "^3.5.0",
     "katex": "^0.10.0",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
